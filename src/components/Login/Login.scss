@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
+// font-family: 'Playball', cursive;
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+// font-family: 'Crete Round', serif;
+
+
+.login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box {
+    // height: 600px;
+    width: 450px;
+    box-sizing: border-box;
+    padding: 80px 50px;
+    box-shadow: 0 0 3px #c1cbd1;
+    // background: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+
+    span {
+      font-size: 2.8em;
+      color: #4786ff;
+      // font-family: "Playball", cursive;
+      font-family: 'Crete Round', serif;
+
+    }
+
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 50px;
+
+      input,
+      button {
+        width: 100%;
+        padding: 10px 10px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+      }
+
+      input {
+        box-shadow: 0 0 3px #c1cbd1;
+
+        &::placeholder {
+          color: #98a0a6;
+        }
+
+        &:focus{
+          border: 2px solid #4786ff;
+        }
+      }
+
+      button {
+        padding: 11px 0px;
+        color: #ffffff;
+        background-color: #4786ff;
+        border-radius: 4px;
+        box-shadow: 1px 9px 18px #7facff;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin: 20px 0;
+        cursor: pointer;
+      }
+    }
+
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #98a0a6;
+      font-size: 1.1em;
+      margin: 20px 0 40px 0;
+    }
+    .separator::before,
+    .separator::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #98a0a6;
+    }
+    .separator::before {
+      margin-right: 1.1em;
+    }
+    .separator::after {
+      margin-left: 1.1em;
+    }
+
+    .other-account {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .icon {
+        height: 35px;
+        width: 35px;
+        padding: 14px 30px;
+        box-sizing: content-box;
+        // background-color: #f5f5f5;
+        border-radius: 10px;
+        border: 1px solid #c1cbd1;
+        transition: all 0.2s ease-in-out;
+
+        &:hover{
+          cursor: pointer;
+          transform: scale(1.1);
+        }
+
+        &:nth-child(2) {
+          color: #000000;
+        }
+
+        &:nth-child(3) {
+          color: #4786ff;
+        }
+      }
+    }
+  }
+}
