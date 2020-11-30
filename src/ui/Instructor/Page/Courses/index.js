@@ -20,6 +20,7 @@ const Courses = () => {
             <th>Subject</th>
             <th>Day</th>
             <th>Start Period</th>
+            <th>Room</th>
             <th>Size</th>
             <th></th>
           </tr>
@@ -32,6 +33,7 @@ const Courses = () => {
               <td>{row.subject}</td>
               <td>{row.day}</td>
               <td>{row.startSlot}</td>
+              <td>{row.room}</td>
               <td>{row.rest + "/" + row.size}</td>
               <td>
                 <Link>
