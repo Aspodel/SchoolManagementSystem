@@ -1,0 +1,51 @@
+.manage-courses {
+  box-sizing: border-box;
+  padding: 40px 83.6px 60px 83.6px;
+
+  table {
+    margin: auto;
+    width: 90%;
+    table-layout: auto;
+
+    thead {
+      background: #f1f1f1;
+    }
+
+    tbody {
+      tr {
+        cursor: pointer;
+
+        &:hover {
+          background-color: #fafafa;
+
+          td {
+            .icon {
+              color: #303030;
+            }
+          }
+        }
+
+        td {
+          border-bottom: 1px solid #f0f0f0;
+        }
+      }
+    }
+
+    th,
+    td {
+      padding: 16px 10px;
+      text-align: center;
+      letter-spacing: 0.5px;
+      font-size: 1.1em;
+
+      &:nth-last-child(1) {
+        width: 30px;
+
+        .icon {
+          font-size: 1.9em;
+          color: transparent;
+        }
+      }
+    }
+  }
+}

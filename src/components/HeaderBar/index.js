@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import "./HeaderBar.scss";
 import { FiBell, FiChevronLeft, FiGrid, FiSearch } from "react-icons/fi";
 import avatar from "../../image/avatar.jpg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const HeaderBar = (props) => {
   const { pathname } = props;
+  let history = useHistory();
   //   console.log(window.location.pathname);
   return (
     <div className="header-bar">
@@ -20,7 +21,10 @@ const HeaderBar = (props) => {
             </div>
           </Fragment>
         ) : (
-          <Link to={pathname} className="only">
+          <Link
+            /* to={pathname} */ onClick={() => history.goBack()}
+            className="only"
+          >
             <FiChevronLeft className="only-icon" />
           </Link>
         )}

@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import Login from "./components/Login/Login";
 // import StudentUI from "./components/StudentUI/StudentUI";
 import Admin from "./ui/Admin";
+import Instructor from "./ui/Instructor";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -20,6 +21,8 @@ function App() {
         <Route path="/login" component={Login} />
 
         <Route path="/student" component={Student} />
+
+        <Route path="/instructor" component={Instructor} />
 
         {login ? (
           <Redirect from="/" to="/student" />

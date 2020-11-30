@@ -5,7 +5,7 @@ import "./Test.scss";
 import { CourseList } from "../../../../api/fakeData";
 import { FiCheck, FiEdit, FiPlus, FiSearch, FiX } from "react-icons/fi";
 import { Checkbox } from "antd";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import AddCourse from "./AddCourse";
 
 const Courses = () => {
