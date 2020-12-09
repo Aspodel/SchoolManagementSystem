@@ -1,13 +1,41 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./HeaderBar.scss";
-import { FiBell, FiChevronLeft, FiGrid, FiSearch } from "react-icons/fi";
+import {
+  FiBell,
+  FiChevronLeft,
+  FiGrid,
+  FiLogOut,
+  FiSearch,
+} from "react-icons/fi";
 import avatar from "../../image/avatar.jpg";
 import { Link, useHistory } from "react-router-dom";
+import { removeToken } from "../../api/manageToken";
+import { get_user_infor } from "../../api";
 
 const HeaderBar = (props) => {
   const { pathname } = props;
+  const [data, setData] = useState();
   let history = useHistory();
   //   console.log(window.location.pathname);
+
+  const log_out = () => {
+    removeToken();
+    history.push("/");
+  };
+
+  useEffect(() => {
+    const getUserInfor = async () => {
+      let result = await get_user_infor();
+      setData(result.data);
+    };
+
+    getUserInfor();
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+  });
+
   return (
     <div className="header-bar">
       <div className="left">
@@ -22,7 +50,8 @@ const HeaderBar = (props) => {
           </Fragment>
         ) : (
           <Link
-            /* to={pathname} */ onClick={() => history.goBack()}
+            /* to={pathname} */
+            onClick={() => history.goBack()}
             className="only"
           >
             <FiChevronLeft className="only-icon" />
@@ -34,8 +63,18 @@ const HeaderBar = (props) => {
 
       <div className="right">
         <img src={avatar} alt="" />
-        <span>Hello, Daddy</span>
+        <span>{data && data.fullName}</span>
         <FiBell className="icon" />
+
+        <div className="drop-box">
+          <div className="box-item">Profile</div>
+          <div className="box-item">Setting</div>
+          <hr />
+          <div className="box-item" onClick={log_out}>
+            <FiLogOut className="box-icon" />
+            Log out
+          </div>
+        </div>
       </div>
     </div>
   );

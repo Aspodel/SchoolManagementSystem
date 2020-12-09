@@ -7,7 +7,7 @@ import Courses from "./Page/Courses";
 
 const Instructor = ({ match }) => {
   return (
-    <div className="instructor">
+    <div className="instructor-ui">
       <HeaderBar pathname={match.path} />
 
       <Route exact path={`${match.path}/`} component={Home} />

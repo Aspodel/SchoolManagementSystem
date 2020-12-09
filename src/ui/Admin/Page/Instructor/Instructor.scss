@@ -1,4 +1,4 @@
-.courses {
+.instructor {
   box-sizing: border-box;
   padding: 40px 83.6px 60px 83.6px;
 
@@ -65,18 +65,60 @@
     table {
       margin: auto;
       width: 90%;
-      min-width: 1100px;
       table-layout: auto;
-      // table-layout: fixed;
 
       thead {
         background: #f1f1f1;
+
+        th {
+          padding: 20px 10px;
+
+          &:nth-last-child(1) {
+            width: 70px;
+            text-align: center;
+          }
+        }
       }
 
       tbody {
         tr {
           &:hover {
             background-color: #fafafa;
+          }
+
+          td {
+            border-bottom: 1px solid #f0f0f0;
+
+            &:nth-last-child(1) {
+              width: 70px;
+              text-align: center;
+            }
+
+            label {
+              cursor: pointer;
+              display: block;
+              padding: 14px 10px;
+            }
+
+            input {
+              width: 75%;
+              // height: 100%;
+              padding: 2px;
+              outline: none;
+              border: 1px solid #dbdbdb;
+              text-align: center;
+              letter-spacing: 0.3px;
+              font-size: 1.05em;
+            }
+
+            .icon {
+              margin: 14px 10px;
+              // margin: auto;
+              height: 23px;
+              width: 23px;
+              cursor: pointer;
+              color: #40a9ff;
+            }
           }
         }
       }
@@ -91,58 +133,6 @@
 
         &:hover {
           background-color: #dff1ff;
-        }
-      }
-
-      th {
-        padding: 20px 10px;
-      }
-      th,
-      td {
-        text-align: center;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      td {
-        border-bottom: 1px solid #f0f0f0;
-
-        label {
-          cursor: pointer;
-          display: block;
-          padding: 14px 10px;
-        }
-
-        input {
-          width: 75%;
-          // height: 100%;
-          padding: 2px;
-          outline: none;
-          border: 1px solid #dbdbdb;
-          text-align: center;
-          letter-spacing: 0.3px;
-          font-size: 1.05em;
-        }
-
-        .icon {
-          margin: auto;
-          height: 23px;
-          width: 23px;
-          cursor: pointer;
-          color: #40a9ff;
-        }
-
-        .icon-box {
-          .icon {
-            &:nth-child(1) {
-              color: #51ff77;
-              margin-right: 12px;
-            }
-            &:nth-child(2) {
-              color: #ff5151;
-            }
-          }
         }
       }
     }
@@ -176,6 +166,71 @@
       color: #ffffff;
       // font-weight: 500;
       cursor: pointer;
+    }
+  }
+
+  .modal {
+    .ant-modal-content {
+      border-radius: 7px;
+    }
+    .ant-modal-footer {
+      border: none;
+      padding: 0 36px 30px 36px;
+    }
+
+    .ant-btn {
+      border-radius: 3.5px;
+      font-size: 1.1em;
+      height: 36px;
+      margin-left: 20px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      margin: auto;
+
+      span {
+        font-weight: 500;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select {
+        outline: none;
+        border: 1.2px solid #e6e6e6;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 1.1em;
+        color: #525252;
+
+        &:focus {
+          border-color: #40a9ff;
+        }
+      }
+
+      select {
+        option {
+          font-size: 1.1em;
+          color: #525252;
+        }
+      }
+
+      .row-2 {
+        display: flex;
+        justify-content: space-between;
+
+        .left,
+        .right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 47%;
+        }
+      }
     }
   }
 }

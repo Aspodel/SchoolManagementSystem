@@ -1,27 +1,28 @@
 import { Checkbox } from "antd";
 import React, { useEffect, useState } from "react";
 import { FiEdit, FiPlus, FiSearch } from "react-icons/fi";
-import { get_students } from "../../../../api";
+import { get_teachers } from "../../../../api";
 import TitleBar from "../../../../components/TitleBar";
 import { formatDate } from "../../../../utils/format";
-import AddStudent from "./AddStudent";
-import "./Student.scss";
+import "./Instructor.scss";
+import AddInstructor from "./AddInstructor";
 
-const Student = () => {
+const Instructor = () => {
   const [checkedList, setCheckedList] = useState([]);
-  const [studentList, setStudentList] = useState([]);
+  const [teacherList, setTeacherList] = useState([]);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [rowId, setRowId] = useState();
 
   useEffect(() => {
-    const getStudents = async () => {
-      const result = await get_students();
+    const getTeachers = async () => {
+      const result = await get_teachers();
       console.log(result.data);
-      setStudentList(result.data);
+      setTeacherList(result.data);
     };
 
-    getStudents();
+    getTeachers();
   }, [addModalVisible, updateModalVisible]);
 
   const changeBackground = (id) => {
@@ -43,9 +44,23 @@ const Student = () => {
     }
   };
 
+  function search(rows) {
+    return rows.filter(
+      (row) =>
+        row.department.departmentName
+          .toString()
+          .toLowerCase()
+          .indexOf(searchValue.toString().toLowerCase()) > -1 ||
+        row.userModel.fullName
+          .toString()
+          .toLowerCase()
+          .indexOf(searchValue.toString().toLowerCase()) > -1
+    );
+  }
+
   return (
-    <div className="student">
-      <TitleBar title="Manage Students" />
+    <div className="instructor">
+      <TitleBar title="Manage Instructors" />
 
       <div className="option-bar">
         <div className="search-box">
@@ -65,10 +80,13 @@ const Student = () => {
           onClick={() => setAddModalVisible(!addModalVisible)}
         >
           <FiPlus className="icon" />
-          <span>New Student</span>
+          <span>New Instructor</span>
         </div>
 
-        <AddStudent visible={addModalVisible} setVisible={setAddModalVisible} />
+        <AddInstructor
+          visible={addModalVisible}
+          setVisible={setAddModalVisible}
+        />
       </div>
 
       <div className="table">
@@ -78,7 +96,6 @@ const Student = () => {
               <tr>
                 <th></th>
                 <th>No</th>
-                <th>Id Card</th>
                 <th>Name</th>
                 <th>Department</th>
                 <th>Birthday</th>
@@ -89,49 +106,46 @@ const Student = () => {
             </thead>
 
             <tbody>
-              {studentList.map((row, index) => (
+              {search(teacherList).map((row, index) => (
                 <tr
-                  id={`row-of-${row.studentId}`}
+                  id={`row-of-${row.teacherId}`}
                   key={index}
                   className={
-                    changeBackground(row.studentId)
+                    changeBackground(row.teacherId)
                       ? "checked-background"
                       : "none"
                   }
                 >
                   <td>
                     <Checkbox
-                      id={row.studentId}
-                      value={row.studentId}
+                      id={row.teacherId}
+                      value={row.teacherId}
                       onChange={(event) => handleCheck(event)}
                     />
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>{index + 1}</label>
+                    <label htmlFor={row.teacherId}>{index + 1}</label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>student{index + 1}</label>
-                  </td>
-                  <td>
-                    <label htmlFor={row.studentId}>
+                    <label htmlFor={row.teacherId}>
                       {row.userModel.fullName}
                     </label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>
+                    <label htmlFor={row.teacherId}>
                       {row.department.departmentName}
                     </label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>
+                    <label htmlFor={row.teacherId}>
                       {formatDate(row.userModel.birthDate)}
                     </label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>{row.userModel.phone}</label>
+                    <label htmlFor={row.teacherId}>{row.userModel.phone}</label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>
+                    <label htmlFor={row.teacherId}>
                       {row.userModel.address}
                     </label>
                   </td>
@@ -155,7 +169,7 @@ const Student = () => {
         <div className="option-box">
           <span>
             You have selected <span>{checkedList.length}</span>{" "}
-            {checkedList.length > 1 ? "students" : "students"}
+            {checkedList.length > 1 ? "instructors" : "instructor"}
           </span>
           <button>Delete</button>
         </div>
@@ -164,4 +178,4 @@ const Student = () => {
   );
 };
 
-export default Student;
+export default Instructor;

@@ -1,34 +1,30 @@
 import "./App.scss";
 import "antd/dist/antd.css";
 import Login from "./components/Login/Login";
-// import StudentUI from "./components/StudentUI/StudentUI";
-import Admin from "./ui/Admin";
-import Instructor from "./ui/Instructor";
+
+// import Admin from "./ui/Admin";
+// import Instructor from "./ui/Instructor";
+// import Student from "./ui/Student";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Student from "./ui/Student";
+import PrivateRoute from "./components/PrivateRoute";
+import { removeToken } from "./api/manageToken";
 
 function App() {
-  const login = true;
+  // console.log(localStorage.getItem("Token"));
+
   return (
+    // removeToken(),
     <div className="App">
       <Switch>
-        {/* <Route path="/student" component={StudentUI} /> */}
-
-        <Route path="/admin" component={Admin} />
-
         <Route path="/login" component={Login} />
 
-        <Route path="/student" component={Student} />
+        <Redirect exact from="/" to="/login" />
 
-        <Route path="/instructor" component={Instructor} />
+        {/* <Route path="/**" component={Login} /> */}
 
-        {login ? (
-          <Redirect from="/" to="/student" />
-        ) : (
-          <Redirect from="/" to="/login" />
-        )}
+        <PrivateRoute />
       </Switch>
     </div>
   );

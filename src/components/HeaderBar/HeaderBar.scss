@@ -91,6 +91,8 @@
   .right {
     display: flex;
     align-items: center;
+    position: relative;
+    height: 100%;
 
     img {
       height: 38px;
@@ -106,12 +108,62 @@
       font-size: 1.1em;
       color: #98a0a6;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
     }
 
     .icon {
       font-size: 1.7em;
       color: #98a0a6;
+    }
+
+    &:hover {
+      .drop-box {
+        display: block;
+      }
+    }
+
+    .drop-box {
+      display: none;
+      border-radius: 3px;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      transform: translate(0%, 80px);
+      box-shadow: 0 5px 10px #c2c2c2;
+      width: 180px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      font-size: 1.1em;
+      letter-spacing: 1px;
+      background-color: #ffffff;
+
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #c1cbd1;
+        margin: 6px 0;
+        // padding: 0;
+      }
+
+      .box-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 3px;
+        cursor: pointer;
+        color: #010101;
+
+        .box-icon {
+          margin-right: 10px;
+        }
+
+        &:hover {
+          background-color: #40a9ff;
+          color: #ffffff;
+        }
+      }
     }
   }
 }

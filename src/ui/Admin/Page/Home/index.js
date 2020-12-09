@@ -24,7 +24,7 @@ const Home = () => {
           </div>
         </Link>
 
-        <Link to={`/admin/intructors`}>
+        <Link to={`/admin/instructors`}>
           <div className="card">
             <FaUser className="icon" />
             <span>Instructor</span>

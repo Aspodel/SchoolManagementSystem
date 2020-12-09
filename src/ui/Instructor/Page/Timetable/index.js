@@ -39,8 +39,8 @@ const Timetable = () => {
 
               {weekdays.map((day, column) => {
                 const render = [];
-                if (TimetableData[0][day]) {
-                  const subjects = TimetableData[0][day];
+                if (TimetableData[day]) {
+                  const subjects = TimetableData[day];
 
                   var isInInterval = false;
 

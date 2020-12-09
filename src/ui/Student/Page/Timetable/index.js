@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./TimeTable.scss";
 import TitleBar from "../../../../components/TitleBar";
 
-import { TimetableData } from "../../../../api/fakeData";
+// import { TimetableData } from "../../../../api/fakeData";
+import { get_user_infor } from "../../../../api";
 
 const TimeTable = () => {
   const period = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -14,8 +15,37 @@ const TimeTable = () => {
     "Friday",
     "Saturday",
   ];
+  const [registedCourses, setRegistedCourses] = useState([]);
+  const [data, setData] = useState([]);
 
-  useEffect(() => {});
+  useEffect(() => {
+    const getUserInfor = async () => {
+      const result = await get_user_infor();
+      let list = result && result.data.courses.map((a) => a);
+      setRegistedCourses(list);
+    };
+
+    getUserInfor();
+  }, []);
+
+  useEffect(() => {
+    if (registedCourses.length > 0) {
+      for (let i = 0; i < weekdays.length; i++) {
+        let filter = registedCourses.filter((course) => course.day - 1 === i);
+        if (filter.length > 0) {
+          setData((prevState) => ({
+            ...prevState,
+            [weekdays[i]]: filter,
+          }));
+        }
+      }
+    }
+  }, [registedCourses]);
+
+  // useEffect(() => {
+  //   console.log(data);
+  //   console.log(TimetableData);
+  // }, [data]);
 
   return (
     <div className="time-table">
@@ -39,24 +69,26 @@ const TimeTable = () => {
 
               {weekdays.map((day, column) => {
                 const render = [];
-                if (TimetableData[0][day]) {
-                  const subjects = TimetableData[0][day];
+                if (data[day]) {
+                  const subjects = data[day];
 
                   var isInInterval = false;
 
                   for (var i = 0; i < subjects.length; i++) {
-                    const startRow = subjects[i].startSlot - 1;
-                    const endRow = startRow + subjects[i].sumSlot - 1;
+                    const startRow = subjects[i].startPeriod - 1;
+                    const endRow = startRow + subjects[i].periods - 1;
 
                     if (startRow <= row && row <= endRow) {
                       isInInterval = true;
 
                       if (startRow === row) {
                         render.push(
-                          <td className="subject" rowSpan={subjects[i].sumSlot}>
+                          <td className="subject" rowSpan={subjects[i].periods}>
                             <div>
-                              <span>{subjects[i].subject}</span>
-                              <span>{"Room: " + subjects[i].room}</span>
+                              <span>{subjects[i].coursesName}</span>
+                              <span>
+                                {"Room: " + subjects[i].room.toUpperCase()}
+                              </span>
                             </div>
                           </td>
                         );

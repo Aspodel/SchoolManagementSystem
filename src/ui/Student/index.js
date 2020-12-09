@@ -8,7 +8,7 @@ import Timetable from "./Page/Timetable/";
 import { Route } from "react-router-dom";
 
 const Student = ({ match }) => {
-  console.log(match.path);
+  // console.log(match.path);
   return (
     <div className="main-ui">
       <HeaderBar pathname={match.path} />

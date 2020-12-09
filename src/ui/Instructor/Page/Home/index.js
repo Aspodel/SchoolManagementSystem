@@ -23,13 +23,6 @@ const Home = () => {
             <span>View Timetable</span>
           </div>
         </Link>
-
-        {/* <Link to={`/intructors/courses`}>
-          <div className="card">
-            <FaUser className="icon" />
-            <span>Instructor</span>
-          </div>
-        </Link> */}
       </div>
     </div>
   );

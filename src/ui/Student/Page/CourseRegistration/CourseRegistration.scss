@@ -22,104 +22,74 @@
       border: none;
       height: 100%;
       border-radius: 4px;
-      box-shadow: 0px 0px 2px rgba($color: #000000, $alpha: 0.5);
+      border: 1.85px solid #e9e9e9;
+
       // background-color: #e8ecf1;
       width: 420px;
       padding: 15px 40px;
       transition: all 0.2s ease-in-out;
       font-size: 1.1em;
 
-      // &::placeholder {
-      //   color: transparent;
-      // }
-
-      // &:focus {
-      //   width: 420px;
-      // }
+      &:focus {
+        border-color: #40a9ff;
+      }
     }
   }
 
-  .courses-table {
-    min-width: 600px;
-    width: 90%;
+  table {
     margin: auto;
+    width: 90%;
+    table-layout: auto;
 
-    .row-header {
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      background-color: #f1f1f1;
-      border-radius: 3px;
-      grid-template-columns: 0.5fr 2.5fr 2.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      //   column-gap: 25px;
-      padding: 16px 10px;
-      font-weight: 600;
-      font-size: 1.1em;
+    .checked-background {
+      background-color: #dff1ff;
 
-      span {
-        &:nth-child(1) {
-          width: 73px;
-          height: 24px;
+      &:hover {
+        background-color: #dff1ff;
+      }
+    }
+
+    thead {
+      background: #f1f1f1;
+
+      th {
+        padding: 16px 10px;
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: #fafafa;
+
+          td {
+            .icon {
+              color: #303030;
+            }
+          }
+        }
+
+        td {
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        label {
+          cursor: pointer;
+          display: block;
+          padding: 16px 10px;
         }
       }
     }
 
-    .ant-row {
-      border-bottom: 1px solid #f0f0f0;
+    th,
+    td {
+      text-align: center;
+      letter-spacing: 0.5px;
+      font-size: 1.1em;
+    }
 
-      label {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        padding: 16px 10px;
-        grid-template-columns: 0.5fr 11.5fr;
-        background: #ffffff;
-
-        &:hover {
-          background-color: #fafafa !important;
-        }
-        span {
-          padding: 0;
-        }
-
-        span:nth-child(2) {
-          display: grid;
-          grid-template-columns: 2.5fr 2.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-          p {
-            height: 100%;
-            margin: 0;
-            font-size: 1.1em;
-          }
-        }
-
-        .ant-checkbox {
-          height: 100%;
-          width: 100%;
-          margin-top: 2px;
-        }
-
-        .ant-checkbox-input {
-          height: 16px;
-          width: 16px;
-        }
-        .ant-checkbox-inner {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-        .ant-checkbox-checked::after {
-          display: none;
-        }
-      }
-
-      .ant-checkbox-wrapper-checked {
-        background-color: #d1ebff !important;
-        &:hover {
-          background-color: #d1ebff !important;
-        }
-      }
+    .rows {
+      padding: 16px 20px;
     }
   }
 
@@ -132,52 +102,36 @@
       margin-bottom: 70px;
     }
 
-    .row-header {
-      width: 90%;
-      margin: auto;
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      background-color: #f1f1f1;
-      border-radius: 3px;
-      font-size: 1.1em;
+    table {
+      th,
+      td {
+        text-align: left;
+        padding: 14px 20px;
+      }
+    }
+  }
 
-      grid-template-columns: 0.5fr 3fr 1.5fr 1.5fr;
-      column-gap: 25px;
-      padding: 16px 35px;
-      font-weight: 500;
+  .save-box {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+    span {
+      font-size: 1.5em;
+      letter-spacing: 1px;
     }
 
-    .row {
-      width: 90%;
-      margin: auto;
-      display: grid;
-      justify-content: center;
-      align-items: center;
+    button {
+      font-size: 1.3em;
+      padding: 5px 20px;
       border-radius: 3px;
-      user-select: none;
-      border-bottom: 1px solid #f0f0f0;
-      // background: #ffffff;
-      grid-template-columns: 0.5fr 3fr 1.5fr 1.5fr;
-      column-gap: 25px;
-      padding: 18px 35px;
-
-      &:nth-last-child(1) {
-        background-color: #f1f1f1;
-        span {
-          // &:nth-child(2) {
-          font-weight: 600;
-          // }
-        }
-      }
-
-      span {
-        letter-spacing: 1.5px;
-
-        &:nth-child(2) {
-          letter-spacing: 1px;
-        }
-      }
+      background-color: #40a9ff;
+      color: #ffffff;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 20px;
     }
   }
 }
