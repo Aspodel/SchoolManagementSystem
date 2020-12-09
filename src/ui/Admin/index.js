@@ -13,11 +13,11 @@ const Admin = ({ match }) => {
 
       <Route exact path={`${match.path}/`} component={Home} />
 
-      <Route exact path={`${match.path}/courses`} component={Courses} />
+      <Route path={`${match.path}/courses`} component={Courses} />
 
-      <Route exact path={`${match.path}/students`} component={Student} />
+      <Route path={`${match.path}/students`} component={Student} />
 
-      <Route exact path={`${match.path}/instructors`} component={Instructor} />
+      <Route path={`${match.path}/instructors`} component={Instructor} />
     </div>
   );
 };

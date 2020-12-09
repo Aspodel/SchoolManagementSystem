@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./TimeTable.scss";
 import TitleBar from "../../../../components/TitleBar";
-
-// import { TimetableData } from "../../../../api/fakeData";
 import { get_user_infor } from "../../../../api";
 
 const TimeTable = () => {

@@ -12,9 +12,9 @@ const Instructor = ({ match }) => {
 
       <Route exact path={`${match.path}/`} component={Home} />
 
-      <Route exact path={`${match.path}/timetable`} component={Timetable} />
+      <Route path={`${match.path}/timetable`} component={Timetable} />
 
-      <Route exact path={`${match.path}/courses`} component={Courses} />
+      <Route path={`${match.path}/courses`} component={Courses} />
     </div>
   );
 };
