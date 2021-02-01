@@ -7,7 +7,9 @@ import {
   FiLogOut,
   FiSearch,
 } from "react-icons/fi";
-import avatar from "../../image/avatar.jpg";
+import teacher from "../../image/teacher.png";
+import admin from "../../image/admin.png";
+import student from "../../image/student.png";
 import { Link, useHistory } from "react-router-dom";
 import { removeToken } from "../../api/manageToken";
 import { get_user_infor } from "../../api";
@@ -32,9 +34,9 @@ const HeaderBar = (props) => {
     getUserInfor();
   }, []);
 
-  useEffect(() => {
-    console.log(data);
-  });
+  // useEffect(() => {
+  //   console.log(data);
+  // });
 
   return (
     <div className="header-bar">
@@ -62,7 +64,16 @@ const HeaderBar = (props) => {
       <div className="center">College Database</div>
 
       <div className="right">
-        <img src={avatar} alt="" />
+        <img
+          src={
+            data && data.role === "admin"
+              ? admin
+              : data && data.role === "teacher"
+              ? teacher
+              : student
+          }
+          alt=""
+        />
         <span>{data && data.fullName}</span>
         <FiBell className="icon" />
 

@@ -200,7 +200,7 @@ const CourseRegistration = () => {
           courseList.find((course) => course.coursesId === checkedList[i]);
         data.push(item);
         credit = credit + item.credits;
-        money = money + item.credits * 23200 * 58;
+        money = money + item.credits * 1350000;
       }
     }
     return (
@@ -211,7 +211,7 @@ const CourseRegistration = () => {
               <td>{index + 1}</td>
               <td>{row.coursesName}</td>
               <td>{row.credits}</td>
-              <td>{formatCurrency(row.credits * 23100 * 58)}</td>
+              <td>{formatCurrency(row.credits * 1350000)}</td>
             </tr>
           ))}
         {checkedList.length > 0 ? (

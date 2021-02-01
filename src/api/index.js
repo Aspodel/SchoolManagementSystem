@@ -60,6 +60,14 @@ export const get_teacher_by_department = async (department_Id) => {
   return result;
 };
 
+export const get_student_by_department = async (department_Id) => {
+  let result = await axios.get(
+    `${college_Url}/GetStudentByDepartment/${department_Id}`
+  );
+  console.log("get student by department running");
+  return result;
+};
+
 export const get_students = async () => {
   let result = await axios.get(`${college_Url}/GetAllStudent`);
   console.log("get all student running");
@@ -124,5 +132,63 @@ export const get_user_infor = async () => {
   };
   let result = await axios.get(`${user_Url}/GetUserInfo`, axiosConfig);
   console.log("get user infor running");
+  return result;
+};
+
+export const add_department = async (data) => {
+  let result = await axios.post(`${college_Url}/AddDepartment`, data);
+  console.log("add department running");
+  return result;
+};
+
+export const upload_student = async (data) => {
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  let result = await axios.post(`${user_Url}/UploadStudent`, data, axiosConfig);
+  console.log("post student file running");
+  return result;
+};
+
+export const upload_teacher = async (data) => {
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  let result = await axios.post(`${user_Url}/UploadTeacher`, data, axiosConfig);
+  console.log("post teacher file running");
+  return result;
+};
+
+export const upload_department = async (data) => {
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  let result = await axios.post(
+    `${college_Url}/UploadDepartment`,
+    data,
+    axiosConfig
+  );
+  console.log("post department file running");
+  return result;
+};
+
+export const upload_course = async (data) => {
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  let result = await axios.post(
+    `${college_Url}/UploadCourse`,
+    data,
+    axiosConfig
+  );
+  console.log("post course file running");
   return result;
 };

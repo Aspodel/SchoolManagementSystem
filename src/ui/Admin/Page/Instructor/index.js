@@ -6,14 +6,16 @@ import TitleBar from "../../../../components/TitleBar";
 import { formatDate } from "../../../../utils/format";
 import "./Instructor.scss";
 import AddInstructor from "./AddInstructor";
+import AddFile from "./AddFile";
 
 const Instructor = () => {
   const [checkedList, setCheckedList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
   const [addModalVisible, setAddModalVisible] = useState(false);
+  const [addFileVisible, setAddFileVisible] = useState(false);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [rowId, setRowId] = useState();
+  // const [rowId, setRowId] = useState();
 
   useEffect(() => {
     const getTeachers = async () => {
@@ -23,7 +25,7 @@ const Instructor = () => {
     };
 
     getTeachers();
-  }, [addModalVisible, updateModalVisible]);
+  }, [addModalVisible, addFileVisible, updateModalVisible]);
 
   const changeBackground = (id) => {
     if (checkedList.length > 0) {
@@ -75,14 +77,25 @@ const Instructor = () => {
           />
         </div>
 
-        <div
-          className="card"
-          onClick={() => setAddModalVisible(!addModalVisible)}
-        >
-          <FiPlus className="icon" />
-          <span>New Instructor</span>
+        <div className="right">
+          <div
+            className="card"
+            onClick={() => setAddFileVisible(!addFileVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>Add File</span>
+          </div>
+
+          <div
+            className="card"
+            onClick={() => setAddModalVisible(!addModalVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>New Instructor</span>
+          </div>
         </div>
 
+        <AddFile visible={addFileVisible} setVisible={setAddFileVisible} />
         <AddInstructor
           visible={addModalVisible}
           setVisible={setAddModalVisible}

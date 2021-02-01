@@ -4,7 +4,10 @@ import "./Courses.scss";
 
 import { FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { get_courses_by_id, get_user_infor } from "../../../../api";
+import {
+  get_courses_by_id,
+  get_user_infor,
+} from "../../../../api";
 import Modal from "antd/lib/modal/Modal";
 import { Button } from "antd";
 import { formatDate } from "../../../../utils/format";
@@ -15,6 +18,7 @@ const Courses = () => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [studentList, setStudentList] = useState([]);
+  const [nowId, setNowId] = useState(null);
   const weekdays = [
     "Monday",
     "Tuesday",
@@ -42,6 +46,7 @@ const Courses = () => {
     let result = await get_courses_by_id(id);
     console.log(result.data);
     setStudentList(result.data.students);
+    setNowId(id);
     setVisible(!visible);
   };
 
@@ -92,9 +97,14 @@ const Courses = () => {
         onCancel={handleCancel}
         width={1200}
         footer={[
-          // <Button key="back" onClick={handleCancel}>
-          //   Cancel
-          // </Button>,
+          <Button>
+            <a
+              href={`https://localhost:44369/api/College/ExportExcel/${nowId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >Export file</a>
+            
+          </Button>,
           <Button
             key="submit"
             type="primary"

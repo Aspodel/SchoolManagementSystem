@@ -5,6 +5,7 @@ import Home from "./Page/Home";
 import Courses from "./Page/Courses";
 import Student from "./Page/Student";
 import Instructor from "./Page/Instructor";
+import Department from "./Page/Department";
 
 const Admin = ({ match }) => {
   return (
@@ -18,6 +19,8 @@ const Admin = ({ match }) => {
       <Route path={`${match.path}/students`} component={Student} />
 
       <Route path={`${match.path}/instructors`} component={Instructor} />
+
+      <Route path={`${match.path}/departments`} component={Department} />
     </div>
   );
 };

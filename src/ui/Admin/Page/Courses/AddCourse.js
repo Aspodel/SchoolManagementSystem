@@ -77,6 +77,9 @@ const AddCourse = (props) => {
   useEffect(() => {
     const getTeacherList = async () => {
       const result = await get_teacher_by_department(data.DepartmentId);
+
+      let value = parseInt(result.data[0].teacherId);
+      setData({ ...data, TeacherId: value });
       setTeacherList(result.data);
     };
 
@@ -85,7 +88,7 @@ const AddCourse = (props) => {
   }, [data.DepartmentId]);
 
   useEffect(() => {
-    // console.log(data);
+    console.log(data);
   }, [data]);
 
   const handleChange = async (e) => {

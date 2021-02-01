@@ -9,11 +9,13 @@ import UpdateCourse from "./UpdateCourse";
 import { delete_courses, get_courses } from "../../../../api";
 import { Modal, Button } from "antd";
 import NotificationBox from "../../../../components/NotificationBox";
+import AddFile from "./AddFile";
 
 const Courses = () => {
   const [courseList, setCourseList] = useState([]);
   const [checkedList, setCheckedList] = useState([]);
   const [addModalVisible, setAddModalVisible] = useState(false);
+  const [addFileVisible, setAddFileVisible] = useState(false);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -56,7 +58,12 @@ const Courses = () => {
     };
 
     getCourses();
-  }, [addModalVisible, updateModalVisible, confirmModalVisible]);
+  }, [
+    addModalVisible,
+    addFileVisible,
+    updateModalVisible,
+    confirmModalVisible,
+  ]);
 
   function search(rows) {
     return rows.filter(
@@ -122,13 +129,25 @@ const Courses = () => {
           />
         </div>
 
-        <div
-          className="card"
-          onClick={() => setAddModalVisible(!addModalVisible)}
-        >
-          <FiPlus className="icon" />
-          <span>New Course</span>
+        <div className="right">
+          <div
+            className="card"
+            onClick={() => setAddFileVisible(!addFileVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>Add File</span>
+          </div>
+
+          <div
+            className="card"
+            onClick={() => setAddModalVisible(!addModalVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>New Course</span>
+          </div>
         </div>
+
+        <AddFile visible={addFileVisible} setVisible={setAddFileVisible} />
 
         <AddCourse visible={addModalVisible} setVisible={setAddModalVisible} />
       </div>

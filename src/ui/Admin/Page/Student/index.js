@@ -6,11 +6,13 @@ import TitleBar from "../../../../components/TitleBar";
 import { formatDate } from "../../../../utils/format";
 import AddStudent from "./AddStudent";
 import "./Student.scss";
+import AddFile from "./AddFile";
 
 const Student = () => {
   const [checkedList, setCheckedList] = useState([]);
   const [studentList, setStudentList] = useState([]);
   const [addModalVisible, setAddModalVisible] = useState(false);
+  const [addFileVisible, setAddFileVisible] = useState(false);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -22,7 +24,7 @@ const Student = () => {
     };
 
     getStudents();
-  }, [addModalVisible, updateModalVisible]);
+  }, [addModalVisible, addFileVisible, updateModalVisible]);
 
   const changeBackground = (id) => {
     if (checkedList.length > 0) {
@@ -60,14 +62,25 @@ const Student = () => {
           />
         </div>
 
-        <div
-          className="card"
-          onClick={() => setAddModalVisible(!addModalVisible)}
-        >
-          <FiPlus className="icon" />
-          <span>New Student</span>
+        <div className="right">
+          <div
+            className="card"
+            onClick={() => setAddFileVisible(!addFileVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>Add File</span>
+          </div>
+
+          <div
+            className="card"
+            onClick={() => setAddModalVisible(!addModalVisible)}
+          >
+            <FiPlus className="icon" />
+            <span>New Student</span>
+          </div>
         </div>
 
+        <AddFile visible={addFileVisible} setVisible={setAddFileVisible} />
         <AddStudent visible={addModalVisible} setVisible={setAddModalVisible} />
       </div>
 
@@ -110,7 +123,7 @@ const Student = () => {
                     <label htmlFor={row.studentId}>{index + 1}</label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>student{index + 1}</label>
+                    <label htmlFor={row.studentId}>{row.idCard}</label>
                   </td>
                   <td>
                     <label htmlFor={row.studentId}>
@@ -128,7 +141,9 @@ const Student = () => {
                     </label>
                   </td>
                   <td>
-                    <label htmlFor={row.studentId}>{row.userModel.phone}</label>
+                    <label htmlFor={row.studentId}>
+                      {"0" + row.userModel.phone}
+                    </label>
                   </td>
                   <td>
                     <label htmlFor={row.studentId}>

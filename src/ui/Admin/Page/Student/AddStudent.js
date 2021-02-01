@@ -31,12 +31,20 @@ const AddStudent = (props) => {
       setLoading(false);
       let status = result.status;
       if (status === 200) {
-        NotificationBox(
-          "success",
-          "Successful",
-          "Instructor have added to database"
-        );
-        setVisible(false);
+        if (result.data.succeeded) {
+          NotificationBox(
+            "success",
+            "Successful",
+            "Student have been added to database"
+          );
+          setVisible(false);
+        } else {
+          NotificationBox(
+            "error",
+            `${result.data.errors[0].code}`,
+            `${result.data.errors[0].description}`
+          );
+        }
       } else {
         NotificationBox(
           "error",
